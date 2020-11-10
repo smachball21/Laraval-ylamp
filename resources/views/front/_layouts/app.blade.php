@@ -18,72 +18,75 @@
 <body>
 @include('_partials.maintenance_ribbon')
 @include('_partials.switched-auth-warning')
-
-<nav class="navbar navbar-dark w-100 d-flex justify-content-between">
-    <div>
-        <a class="navbar-brand" href="/">
-            <img
-                src="{{ asset_cache('media/logos/logo.png') }}"
-                    width="30px" height="30px" class="d-inline-block align-top" alt="logo">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-
-    </div>
-
-    <div class="text-uppercase">
-        <a href="/" class="btn ">{{ __('Contact form') }}</a>
-        @auth
-            <a href="{{ route('friendship.search') }}" class="btn">{{ __('Amis') }}</a>
-        @endauth
-    </div>
-
-    {{--Menu--}}
-    <div>
-        @if (isset($navMenus['menu']))
-            @foreach ($navMenus['menu']->getTree() as $node)
-                @if (empty($node['children']))
-                    @include('front._partials._navbar_link', ['node' => $node, 'dropdownItem' => false, 'linkClass' => 'btn'])
-                @else
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                            {{ $node['item']->getSmartText() }}
-                        </a>
-                        <div class="dropdown-menu">
-                            @foreach ($node['children'] as $childNode)
-                                @include('front._partials._navbar_link', ['node' => $node, 'dropdownItem' => true, 'linkClass' => 'btn'])
-                            @endforeach
-                        </div>
-                    </li>
-                @endif
-            @endforeach
-        @endif
-        {{--Authentication Links--}}
-        @guest
-            {{--Login--}}
-            <a href="{{ route('login') }}" class="btn">{{ __('Login') }}</a>
-            {{--Register--}}
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="btn">{{ __('Register') }}</a>
-            @endif
-        @else
-            @can($ACCESS_BACKOFFICE)
-                {{--Backoffice--}}
-                <a href="{{ route('back.dashboard') }}" class="btn btn-danger">
-                    {{ __('Administration') }}
+<div class="bblue">
+    <div class="container">
+        <nav class="navbar navbar-dark w-100 d-flex justify-content-between">
+            <div>
+                <a class="navbar-brand" href="/">
+                    <img
+                        src="{{ asset_cache('media/logos/logo.png') }}"
+                        width="30px" height="30px" class="d-inline-block align-top" alt="logo">
+                    {{ config('app.name', 'Laravel') }}
                 </a>
-            @endcan
 
-            {{--Logout--}}
-            <a href="{{ route('logout') }}" class="btn"
-               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        @endguest
+            </div>
+
+            <div class="text-uppercase">
+                <a href="/" class="btn ">{{ __('Contact form') }}</a>
+                @auth
+                    <a href="{{ route('friendship.search') }}" class="btn">{{ __('Amis') }}</a>
+                @endauth
+            </div>
+
+            {{--Menu--}}
+            <div>
+                @if (isset($navMenus['menu']))
+                    @foreach ($navMenus['menu']->getTree() as $node)
+                        @if (empty($node['children']))
+                            @include('front._partials._navbar_link', ['node' => $node, 'dropdownItem' => false, 'linkClass' => 'btn'])
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                    {{ $node['item']->getSmartText() }}
+                                </a>
+                                <div class="dropdown-menu">
+                                    @foreach ($node['children'] as $childNode)
+                                        @include('front._partials._navbar_link', ['node' => $node, 'dropdownItem' => true, 'linkClass' => 'btn'])
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
+                @endif
+                {{--Authentication Links--}}
+                @guest
+                    {{--Login--}}
+                    <a href="{{ route('login') }}" class="btn">{{ __('Login') }}</a>
+                    {{--Register--}}
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="btn">{{ __('Register') }}</a>
+                    @endif
+                @else
+                    @can($ACCESS_BACKOFFICE)
+                        {{--Backoffice--}}
+                        <a href="{{ route('back.dashboard') }}" class="btn btn-danger">
+                            {{ __('Administration') }}
+                        </a>
+                    @endcan
+
+                    {{--Logout--}}
+                    <a href="{{ route('logout') }}" class="btn"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
+            </div>
+        </nav>
     </div>
-</nav>
+</div>
 
 @yield('content')
 
