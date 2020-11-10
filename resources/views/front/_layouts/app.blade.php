@@ -22,7 +22,11 @@
 	<div class="container">
 		<nav class="text-center">
 			<a href="/" class="btn">{{ config('app.name', 'Laravel') }}</a>
-			<a href="{{ route('contact') }}" class="btn">{{ __('Contact form') }}</a>
+            <a href="/" class="btn">{{ __('Contact form') }}</a>
+            @guest
+            @else
+			<a href="{{ route('friendship.search') }}" class="btn">{{ __('Friendship') }}</a>
+            @endguest
 			{{--Menu--}}
 			@if (isset($navMenus['menu']))
 				@foreach ($navMenus['menu']->getTree() as $node)

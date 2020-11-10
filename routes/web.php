@@ -9,6 +9,7 @@ use App\Http\Controllers\Back\RoleController;
 use App\Http\Controllers\Back\SettingsController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\FriendshipController;
 use App\Http\Controllers\Front\HomeController;
 use App\Models\Permission;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -41,6 +42,12 @@ Route::group([
 	// === Formulaire de contact ===
 	Route::name('contact')->get('contact', [ContactController::class, 'form']);
 	Route::post('contact', [ContactController::class, 'send']);
+
+    Route::middleware(['auth', 'verified'])->group(function() {
+        Route::name('friendship.search')->get('friendship', [FriendshipController::class, 'list']);
+        Route::name('friendship.add')->get('friendship/add/{user?}', [FriendshipController::class, 'addFriend'])->where(['user' => '\d*']);
+    });
+
 
 	Route::middleware(['auth', 'verified'])->group(function () {
 		// .. Les utilisateurs doivent être connectés
@@ -88,5 +95,7 @@ Route::prefix(config('admin.backoffice_prefix'))->middleware(['auth', 'verified'
 		// === Settings ===
 		Route::name('back.settings.parameters')->get('settings/parameters', [SettingsController::class, 'parameters']);
 		Route::name('back.settings.parameters')->post('settings/parameters', [SettingsController::class, 'saveParameters']);
+
+
 	});
 });
