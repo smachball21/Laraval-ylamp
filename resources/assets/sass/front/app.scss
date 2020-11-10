@@ -1,3 +1,23 @@
 @import 'variables';
 @import 'cms';
 @import '../common';
+
+.navbar-dark {
+    background-color: #2A3140;
+}
+
+.footer-color {
+    background-color: #3E495F;
+}
+
+body {
+    background-color: #F5F5F5;
+}
+
+.btn {
+  color: #fff;
+}
+
+.btn:hover {
+  color: #CFCFCF;
+}

@@ -1,7 +1,10 @@
 @extends('front._layouts.app')
 
 @section('content')
-	<main class="text-center my-5">
-		<h1 class="display-3">👋 Bonjour Monde !</h1>
-	</main>
+        <div class="d-flex align-items-center justify-content-center" style="height: 800px">
+            <div class="p-2 bd-highlight col-example">
+                <h1 class="display-3">👋 Bonjour Monde !</h1>
+            </div>
+        </div>
+
 @endsection
