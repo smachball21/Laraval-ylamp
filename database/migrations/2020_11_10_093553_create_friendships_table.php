@@ -19,7 +19,7 @@ class CreateFriendshipsTable extends Migration
             $table->foreign('sender_id')->references('id')->on('users');
             $table->bigInteger('target_id')->unsigned();
             $table->foreign('target_id')->references('id')->on('users');
-            $table->dateTime('accepted_at');
+            $table->dateTime('accepted_at')->nullable();
             $table->timestamps();
         });
     }
