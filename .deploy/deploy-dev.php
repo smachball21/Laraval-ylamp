@@ -11,10 +11,10 @@ class DeployLaravel extends Deploy
 	 */
 	protected function deploy()
 	{
-		$this->execAndLog('composer dump-autoload');
+		$this->execAndLog('composer dump-autoload -n');
 		$this->execAndLog('php artisan down --render="errors::503"');
-		$this->execAndLog('composer install');
-		$this->execAndLog('composer dump-autoload');
+		$this->execAndLog('composer install -n');
+		$this->execAndLog('composer dump-autoload -n');
 		$this->execAndLog('php artisan migrate --force');
 		$this->execAndLog('php artisan storage:link');
 		$this->execAndLog('php artisan assets_media:link');
