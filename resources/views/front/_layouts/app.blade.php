@@ -30,13 +30,12 @@
                 </a>
 
             </div>
-
-            <div class="text-uppercase">
-                <a href="/" class="btn ">{{ __('Contact form') }}</a>
-                @auth
+            @auth
+                <div class="text-uppercase">
+                    <a href="{{ route('contact') }}" class="btn ">{{ __('Contact form') }}</a>
                     <a href="{{ route('friendship.search') }}" class="btn">{{ __('Amis') }}</a>
-                @endauth
-            </div>
+                </div>
+            @endauth
 
             {{--Menu--}}
             <div>
