@@ -7,7 +7,7 @@
     @stack('meta')
     <title>@hasSection('title')@yield('title') - @endif{{ config('app.name') }}</title>
     {{-- Favicon --}}
-    <link rel="icon" type="image/png" href="{{ asset_cache('media/favicons/favicon.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset_cache('images/logo.png') }}"/>
     {{--Fonts--}}
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     {{--Styles--}}
@@ -24,7 +24,7 @@
             <div>
                 <a class="navbar-brand" href="/">
                     <img
-                        src="{{ asset_cache('media/logos/logo.png') }}"
+                        src="{{ asset_cache('images/logo.png') }}"
                         width="30px" height="30px" class="d-inline-block align-top" alt="logo">
                     {{ config('app.name', 'Laravel') }}
                 </a>
