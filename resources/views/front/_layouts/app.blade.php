@@ -9,7 +9,8 @@
     {{-- Favicon --}}
     <link rel="icon" type="image/png" href="{{ asset_cache('images/logo.png') }}"/>
     {{--Fonts--}}
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     {{--Styles--}}
     <link href="{{ mix('css/front/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/front/app.css') }}" rel="stylesheet">
@@ -32,8 +33,8 @@
             </div>
             @auth
                 <div class="text-uppercase">
-                    <a href="{{ route('contact') }}" class="btn ">{{ __('Contact form') }}</a>
-                    <a href="{{ route('friendship.search') }}" class="btn">{{ __('Amis') }}</a>
+                    <a href="{{ route('contact') }}" class="btn cwhite">{{ __('Contact form') }}</a>
+                    <a href="{{ route('friendship.search') }}" class="btn cwhite">{{ __('Amis') }}</a>
                 </div>
             @endauth
 
@@ -60,10 +61,10 @@
                 {{--Authentication Links--}}
                 @guest
                     {{--Login--}}
-                    <a href="{{ route('login') }}" class="btn">{{ __('Login') }}</a>
+                    <a href="{{ route('login') }}" class="btn cwhite">{{ __('Login') }}</a>
                     {{--Register--}}
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn">{{ __('Register') }}</a>
+                        <a href="{{ route('register') }}" class="btn cwhite">{{ __('Register') }}</a>
                     @endif
                 @else
                     @can($ACCESS_BACKOFFICE)
@@ -74,7 +75,7 @@
                     @endcan
 
                     {{--Logout--}}
-                    <a href="{{ route('logout') }}" class="btn"
+                    <a href="{{ route('logout') }}" class="btn cwhite"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>

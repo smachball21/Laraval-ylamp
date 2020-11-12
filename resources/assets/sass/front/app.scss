@@ -1,11 +1,24 @@
 @import 'variables';
 @import 'cms';
 @import '../common';
+body {
+    background-color: #F5F5F5;
+    font-family: Quicksand, sans-serif;
+}
+
+.bblue {
+    background-color: #3E495F;
+}
+
+.cwhite {
+    color: white;
+}
+
+.cwhite:hover {
+    color: #aeaeae;
+}
 
 .footer-color {
     background-color: #3E495F;
 }
 
-body {
-    background-color: #F5F5F5;
-}
