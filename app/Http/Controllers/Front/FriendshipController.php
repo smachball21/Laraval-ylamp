@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Friendship;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 
 class FriendshipController extends Controller
@@ -60,18 +61,21 @@ class FriendshipController extends Controller
     {
     }
 
-    public function myfriends()
+    public function myfriends(Request $request)
     {
-        $userId = Auth::user()->id;
+        $currentuser = Auth::user();
 
-        $ownfriends = Friendship::WhereNotNull('accepted_at')
-            ->where(function ($query) use ($userId) {
-                $query->where('sender_id', $userId)
-                    ->orWhere('target_id', $userId);
+        $ownfriends = Friendship::with(['target', 'sender'])
+            ->WhereNotNull('accepted_at')
+            ->where(function ($query) use ($currentuser) {
+                $query->where('sender_id', $currentuser->id)
+                    ->orWhere('target_id', $currentuser->id);
             })->get();
+
 
         return view('front.friendship', [
             'friends' => $ownfriends,
+            'currentuser' => $currentuser
         ]);
     }
 
@@ -87,6 +91,8 @@ class FriendshipController extends Controller
             $query2->where('sender_id', $userId)
                 ->orWhere('target_id', $userId);
         })->get();
+
+        d($friendsrequest);
 
         return view('front.friendship', [
             'friends' => $friendsrequest,
