@@ -8,6 +8,7 @@ use App\Http\Controllers\Back\PermissionController;
 use App\Http\Controllers\Back\RoleController;
 use App\Http\Controllers\Back\SettingsController;
 use App\Http\Controllers\Back\UserController;
+use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\FriendshipController;
 use App\Http\Controllers\Front\HomeController;
@@ -62,6 +63,7 @@ Route::group([
 
 	Route::middleware(['auth', 'verified'])->group(function () {
 		// .. Les utilisateurs doivent être connectés
+        Route::name('comments.get')->get('comments/{post?}', [CommentController::class,'showComment'])->where(['post' => '\d*']);
 	});
 });
 
