@@ -8,9 +8,11 @@ use App\Http\Controllers\Back\PermissionController;
 use App\Http\Controllers\Back\RoleController;
 use App\Http\Controllers\Back\SettingsController;
 use App\Http\Controllers\Back\UserController;
+use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\FriendshipController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\PostController;
 use App\Models\Permission;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -52,14 +54,15 @@ Route::group([
         Route::name('friendship.delete')->get('friendship/delete/{user?}', [FriendshipController::class, 'deleteFriend'])->where(['user' => '\d*']);
         Route::name('friendship.reject')->get('friendship/reject/{user?}', [FriendshipController::class, 'rejectFriend'])->where(['user' => '\d*']);
         Route::name('friendship.accept')->get('friendship/accept/{user?}', [FriendshipController::class, 'acceptFriend'])->where(['user' => '\d*']);
+
+        // === Posts ===
+        Route::name('posts.get')->get('posts', [PostController::class, 'get']);
+        // === Comments ===
+        Route::name('comments.get')->get('comments/{post?}', [CommentController::class,'showComment'])->where(['post' => '\d*']);
+
     });
 
-
-	Route::middleware(['auth', 'verified'])->group(function () {
-		// .. Les utilisateurs doivent être connectés
-	});
 });
-
 //=======================================================
 //                         ADMIN
 

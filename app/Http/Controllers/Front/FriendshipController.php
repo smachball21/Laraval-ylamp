@@ -70,7 +70,6 @@ class FriendshipController extends Controller
                     ->orWhere('target_id', $currentuser->id);
             })->get();
 
-
         return view('front.friendship', [
             'friends' => $ownfriends,
             'currentuser' => $currentuser,
