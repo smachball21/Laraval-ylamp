@@ -17,7 +17,7 @@
         </td>
 
         <td class="text-right text-nowrap">
-            <a class="btn-danger btn-sm" data-toggle="tooltip" href="{{ route('friendship.delete', ['user' => $friendship]) }}" title="{{ __("Envoyer une demande d'ami") }}">
+            <a class="btn-danger btn-sm" data-toggle="tooltip" href="{{ route('friendship.delete', ['user' => $friendship]) }}" title="{{ __("Supprimer cet ami") }}">
                 <small>{{ __("Supprimer cet ami") }}</small>
             </a>
         </td>

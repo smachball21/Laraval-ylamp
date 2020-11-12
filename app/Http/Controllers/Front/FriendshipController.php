@@ -84,7 +84,8 @@ class FriendshipController extends Controller
         $friendsrequest = Friendship::with(['sender', 'target'])
             ->where(function ($query) {
                 $query->WhereNull('accepted_at')
-                    ->WhereNull('rejected_at');
+                    ->WhereNull('rejected_at')
+                    ->WhereNull('canceled_at');
             })->where(function ($query2) use ($userId) {
                 $query2->where('sender_id', $userId->id)
                     ->orWhere('target_id', $userId->id);
@@ -102,10 +103,19 @@ class FriendshipController extends Controller
     // Lister tous les utilisateurs pour les ajouter en amis ou autre
     public function list()
     {
-        $userId = Auth::user()->id;
+        $currentuser = Auth::user();
+
+        //je cherche les utilisateurs qui n'ont pas d'amitier avec moi & pas de demande
+        $userlist = User::whereDoesntHave('sentFriendships', function ($query) use ($currentuser) {
+            $query->where('sender_id',$currentuser->id);
+        })->orWhereDoesntHave('receivedFriendships', function ($query) use ($currentuser) {
+            $query->where('target_id',$currentuser->id);
+        })->get();
 
         return view('front.friendship', [
-            'users' => User::paginate(25),
+            'friends' => $userlist,
+            'currentuser' => $currentuser,
+            'partial' => 'userslist_table',
         ]);
     }
 }
