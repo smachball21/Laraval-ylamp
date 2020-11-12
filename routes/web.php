@@ -57,13 +57,12 @@ Route::group([
 
         // === Posts ===
         Route::name('posts.get')->get('posts', [PostController::class, 'get']);
-
         // === Comments ===
         Route::name('comments.get')->get('comments/{post?}', [CommentController::class,'showComment'])->where(['post' => '\d*']);
 
     });
-});
 
+});
 //=======================================================
 //                         ADMIN
 
