@@ -21,7 +21,7 @@
 @include('_partials.switched-auth-warning')
 <div class="bblue">
     <div class="container">
-        <nav class="navbar navbar-dark collapse navbar-collapse w-100 d-flex justify-content-between">
+        <nav class="navbar navbar-dark w-100 d-flex justify-content-between">
             <div>
                 <a class="navbar-brand" href="/">
                     <img
