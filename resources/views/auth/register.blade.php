@@ -64,6 +64,21 @@
 									])
 								</div>
 
+                                <div class="form-group">
+                                    @form('select', [
+                                    'label' => ['text' => 'Genre'],
+                                    'input' => [
+                                    'name' => 'gender_id',
+                                    ],
+                                    'selectOptions' => [
+                                    'Homme' => 1,
+                                    'Femme' => 2,
+                                    'Non binaire' => 3,
+                                    ],
+                                    'placeholder' => 'Selectionner',
+                                    ])
+                                </div>
+
 								{{--<div class="form-group">
 									@form('password', [
 										'label' => [
