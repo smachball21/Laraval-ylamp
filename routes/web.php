@@ -58,13 +58,10 @@ Route::group([
         // === Posts ===
         Route::name('posts.get')->get('posts', [PostController::class, 'get']);
 
-    });
-
-
-	Route::middleware(['auth', 'verified'])->group(function () {
-		// .. Les utilisateurs doivent être connectés
+        // === Comments ===
         Route::name('comments.get')->get('comments/{post?}', [CommentController::class,'showComment'])->where(['post' => '\d*']);
-	});
+
+    });
 });
 
 //=======================================================
