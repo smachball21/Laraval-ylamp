@@ -29,11 +29,10 @@
                         width="30px" height="30px" class="d-inline-block align-top" alt="logo">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-
             </div>
             @auth
                 <div class="text-uppercase">
-                    <a href="{{ route('contact') }}" class="btn cwhite">{{ __('Contact form') }}</a>
+{{--                    <a href="{{ route('contact') }}" class="btn cwhite">{{ __('Contact form') }}</a>--}}
                     <a href="{{ route('friendship.friends') }}" class="btn cwhite">{{ __('Amis') }}</a>
                     <a href="{{ route('posts.get') }}" class="btn cwhite">Mes Posts</a>
                 </div>
@@ -105,7 +104,7 @@
 <script src="{{ mix('js/front/app.js') }}"></script>
 @stack('scripts')
 <!-- Footer -->
-<footer class="page-footer text-light font-small footer-color fixed-bottom">
+<footer class="page-footer text-light font-small footer-color">
 
     <!-- Copyright -->
     <div class="footer-copyright text-right py-3 mr-3">© 2020 Copyright:

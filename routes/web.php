@@ -36,7 +36,7 @@ Route::group([
 //                         FRONT
 
 Route::group([
-	'prefix'     => LaravelLocalization::setLocale(),
+//	'prefix'     => LaravelLocalization::setLocale(),
 	'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
 ], function () {
 	Route::name('home')->get('/', [HomeController::class, 'index']);
@@ -57,6 +57,7 @@ Route::group([
 
         // === Posts ===
         Route::name('posts.get')->get('posts', [PostController::class, 'get']);
+        Route::name('posts.add')->post('posts/add', [PostController::class, 'add']);
         // === Comments ===
         Route::name('comments.get')->get('comments/{post?}', [CommentController::class,'showComment'])->where(['post' => '\d*']);
 
