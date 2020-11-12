@@ -27,6 +27,6 @@ class Friendship extends Model
 
     public function target()
     {
-        return $this->belongsTo(User::class, 'traget_id','id');
+        return $this->belongsTo(User::class, 'target_id','id');
     }
 }

@@ -6,5 +6,4 @@
                 <h1 class="display-3">👋 Bonjour Monde !</h1>
             </div>
         </div>
-
 @endsection

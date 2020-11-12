@@ -74,6 +74,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasLocalePreferen
         return $this->hasMany(Friendship::class, 'target_id');
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
 	/*
 	|--------------------------------------------------------------------------
 	| SCOPES

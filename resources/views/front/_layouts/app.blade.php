@@ -34,7 +34,8 @@
             @auth
                 <div class="text-uppercase">
                     <a href="{{ route('contact') }}" class="btn cwhite">{{ __('Contact form') }}</a>
-                    <a href="{{ route('friendship.search') }}" class="btn cwhite">{{ __('Amis') }}</a>
+                    <a href="{{ route('friendship.friends') }}" class="btn cwhite">{{ __('Amis') }}</a>
+                    <a href="{{ route('posts.get') }}" class="btn cwhite">Mes Posts</a>
                 </div>
             @endauth
 
