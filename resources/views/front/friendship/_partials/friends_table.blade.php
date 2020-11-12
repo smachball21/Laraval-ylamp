@@ -5,9 +5,6 @@
 </tr>
 </thead>
 <tbody>
-
-
-
 @foreach ($friends as $friendship)
     <tr>
         <td>
@@ -20,9 +17,9 @@
         </td>
 
         <td class="text-right text-nowrap">
-{{--            <a class="btn-light btn-sm" data-toggle="tooltip" href="{{ route('friendship.add', ['user' => $friendship]) }}" title="{{ __("Envoyer une demande d'ami") }}">--}}
-{{--                <small>{{ __("Envoyer une demande d'ami") }}</small>--}}
-{{--            </a>--}}
+            <a class="btn-danger btn-sm" data-toggle="tooltip" href="{{ route('friendship.delete', ['user' => $friendship]) }}" title="{{ __("Envoyer une demande d'ami") }}">
+                <small>{{ __("Supprimer cet ami") }}</small>
+            </a>
         </td>
     </tr>
 @endforeach

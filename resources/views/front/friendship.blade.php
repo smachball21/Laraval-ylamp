@@ -21,7 +21,7 @@
         <div class="content w-50">
             <div class="card">
                 <table class="table table-striped">
-                   @include('front.friendship._partials.list_table', ['friends' => $friends])
+                   @include('front.friendship._partials.'.$partial, ['friends' => $friends])
                 </table>
             </div>
         </div>

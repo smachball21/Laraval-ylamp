@@ -47,7 +47,7 @@ Route::group([
         Route::name('friendship.search')->get('friendship', [FriendshipController::class, 'list']);
 
         Route::name('friendship.friends')->get('friendship/friends', [FriendshipController::class, 'myfriends']);
-        Route::name('friendship.request')->get('friendship/friends/request', [FriendshipController::class, 'friendsrequests']);
+        Route::name('friendship.request')->get('friendship/request', [FriendshipController::class, 'friendsrequests']);
         Route::name('friendship.add')->get('friendship/add/{user?}', [FriendshipController::class, 'addFriend'])->where(['user' => '\d*']);
         Route::name('friendship.delete')->get('friendship/delete/{user?}', [FriendshipController::class, 'deleteFriend'])->where(['user' => '\d*']);
         Route::name('friendship.reject')->get('friendship/reject/{user?}', [FriendshipController::class, 'rejectFriend'])->where(['user' => '\d*']);
