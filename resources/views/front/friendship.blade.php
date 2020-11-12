@@ -11,7 +11,8 @@
         <h1 class="display-3">Trouvez, invitez, supprimez vos amis en 1 clic</h1>
     </main>
     <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush text-decoration-none">
+            <a href="{{ route('friendship.search') }}"><li class="list-group-item">Trouvez des amis</li></a>
             <a href="{{ route('friendship.friends') }}"><li class="list-group-item">Mes amis</li></a>
             <a href="{{ route('friendship.request') }}"><li class="list-group-item">Mes demande</li></a>
         </ul>
