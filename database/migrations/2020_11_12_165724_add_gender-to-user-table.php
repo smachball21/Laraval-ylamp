@@ -14,7 +14,8 @@ class AddGenderToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+            $table->integer('gender_id')->unsigned();
+            $table->foreign('gender_id')->references('id')->on('genders');
         });
     }
 
