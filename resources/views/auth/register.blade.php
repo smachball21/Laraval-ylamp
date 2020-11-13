@@ -66,16 +66,18 @@
 
                                 <div class="form-group">
                                     @form('select', [
-                                    'label' => ['text' => 'Genre'],
+                                        'label' => ['text' => 'Genre'
+                                    ],
                                     'input' => [
-                                    'name' => 'gender_id',
+                                        'name' => 'gender_id',
+                                        'required',
                                     ],
                                     'selectOptions' => [
-                                    'Homme' => 1,
-                                    'Femme' => 2,
-                                    'Non binaire' => 3,
+                                        'Homme' => 1,
+                                        'Femme' => 2,
+                                        'Non binaire' => 3,
                                     ],
-                                    'placeholder' => 'Selectionner',
+                                        'placeholder' => 'Selectionner',
                                     ])
                                 </div>
 
