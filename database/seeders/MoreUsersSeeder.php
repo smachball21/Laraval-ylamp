@@ -24,6 +24,7 @@ class MoreUsersSeeder extends Seeder
                 'username' => 'Fillon',
                 'email' => 'fillon@example.com',
                 'password' => Hash::make('root'),
+                'gender_id' => 1,
                 'email_verified_at' => now(),
             ]),
 
@@ -33,6 +34,7 @@ class MoreUsersSeeder extends Seeder
                 'username' => 'Balkany',
                 'email' => 'balkany@example.com',
                 'password' => Hash::make('root'),
+                'gender_id' => 1,
                 'email_verified_at' => now(),
             ]),
 
@@ -42,6 +44,7 @@ class MoreUsersSeeder extends Seeder
                 'username' => 'Cahuzac',
                 'email' => 'cahuzac@example.com',
                 'password' => Hash::make('root'),
+                'gender_id' => 1,
                 'email_verified_at' => now(),
             ]),
         ];
