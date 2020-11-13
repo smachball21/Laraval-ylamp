@@ -14,6 +14,11 @@ class GenderSeeder extends Seeder
      */
     public function run()
     {
-        Gender::create(['gender' => 'Homme'],['gender' => 'Femme'],['gender' => 'Non binaire']);
+        $gender = [
+            ['gender' => 'Homme', 'created_at' => Now(), 'updated_at' => Now()],
+            ['gender' => 'Femme', 'created_at' => Now(), 'updated_at' => Now()],
+            ['gender' => 'Non binaire', 'created_at' => Now(), 'updated_at' => Now()],
+        ];
+        Gender::insert($gender);
     }
 }
