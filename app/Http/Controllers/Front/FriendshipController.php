@@ -7,8 +7,6 @@ use App\Models\Friendship;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 
 
 class FriendshipController extends Controller
@@ -60,7 +58,7 @@ class FriendshipController extends Controller
         return redirect()->back()->with('warningNotif', "Demande d'ami annulé !");
     }
 
-    public function myfriends(Request $request)
+    public function myfriends()
     {
         $currentuser = Auth::user();
 
@@ -107,13 +105,15 @@ class FriendshipController extends Controller
     {
         $currentuser = Auth::user();
 
-        //je cherche les utilisateurs qui n'ont pas d'amitier avec moi & pas de demande
-        $userlist = User::whereHas('receivedFriendships',function($query) use ($currentuser){
-            $query->where('target_id','!=','users.id')
-            ->where('canceled_At', NULL);
-        })->get();
-
-        dd($userlist);
+        $userlist = User::with('receivedFriendships', 'sentFriendships')
+            ->whereDoesntHave('receivedFriendships', function ($query) use ($currentuser) {
+                $query->select('target_id')
+                    ->whereColumn('users.id', 'friendships.target_id');
+            })->whereDoesntHave('sentFriendships', function ($query) use ($currentuser) {
+                $query->select('sender_id')
+                    ->whereColumn('users.id', 'friendships.sender_id');
+            })->where('users.id', '!=', $currentuser->id)
+            ->get();
 
         return view('front.friendship', [
             'friends' => $userlist,

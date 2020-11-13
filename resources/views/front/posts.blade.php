@@ -32,7 +32,9 @@
 
     <section class="m-5">
         <div class="container d-flex justify-content-center">
-            <textarea class="description" name="description"></textarea>
+            <label>
+                <textarea class="description" name="description"></textarea>
+            </label>
         </div>
 
     </section>
@@ -57,7 +59,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection
