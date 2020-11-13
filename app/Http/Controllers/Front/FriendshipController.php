@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class FriendshipController extends Controller
@@ -67,7 +68,8 @@ class FriendshipController extends Controller
             ->WhereNotNull('accepted_at')
             ->where(function ($query) use ($currentuser) {
                 $query->where('sender_id', $currentuser->id)
-                    ->orWhere('target_id', $currentuser->id);
+                    ->orWhere('target_id', $currentuser->id)
+                    ->where('canceled_At', NULL);
             })->get();
 
         return view('front.friendship', [
@@ -106,11 +108,12 @@ class FriendshipController extends Controller
         $currentuser = Auth::user();
 
         //je cherche les utilisateurs qui n'ont pas d'amitier avec moi & pas de demande
-        $userlist = User::whereDoesntHave('sentFriendships', function ($query) use ($currentuser) {
-            $query->where('sender_id',$currentuser->id);
-        })->orWhereDoesntHave('receivedFriendships', function ($query) use ($currentuser) {
-            $query->where('target_id',$currentuser->id);
+        $userlist = User::whereHas('receivedFriendships',function($query) use ($currentuser){
+            $query->where('target_id','!=','users.id')
+            ->where('canceled_At', NULL);
         })->get();
+
+        dd($userlist);
 
         return view('front.friendship', [
             'friends' => $userlist,
