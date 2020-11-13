@@ -6,28 +6,35 @@
 
 @section('content')
 
-    <section id="addPost" class="addPost my-5">
-            <div class="container">
-                <div class="text-center">
-                    <form action=" {{route('posts.add')}} " method="POST" id="add">
-                        @csrf
-                        <div class="row justify-content-center">
-                            <div class="form-group col-10">
-                                @form('textarea', [
-                                    'label' => ['text' => 'Ajouter un nouveau post'],
-                                    'input' => ['name' => 'description',
-                                    'placeholder' => 'Veuillez ajouter votre contenu ici',
-                                    'rows'  => 4,
-                                    'value' => old('description')],
-                                ])
-                            </div>
-                        </div>
-                        <button type="submit" form="add" class="btn btn-dark btn-padded ">
-                            <i class="far fa-plus mr-2"></i> Ajouter un post
-                        </button>
-                    </form>
-                </div>
-            </div>
+{{--    <section id="addPost" class="addPost my-5">--}}
+{{--            <div class="container">--}}
+{{--                <div class="text-center">--}}
+{{--                    <form action=" {{route('posts.add')}} " method="POST" id="add">--}}
+{{--                        @csrf--}}
+{{--                        <div class="row justify-content-center">--}}
+{{--                            <div class="form-group col-10">--}}
+{{--                                @form('textarea', [--}}
+{{--                                    'label' => ['text' => 'Ajouter un nouveau post'],--}}
+{{--                                    'input' => ['name' => 'description',--}}
+{{--                                    'placeholder' => 'Veuillez ajouter votre contenu ici',--}}
+{{--                                    'rows'  => 4,--}}
+{{--                                    'value' => old('description')],--}}
+{{--                                ])--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <button type="submit" form="add" class="btn btn-dark btn-padded ">--}}
+{{--                            <i class="far fa-plus mr-2"></i> Ajouter un post--}}
+{{--                        </button>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--    </section>--}}
+
+    <section class="m-5">
+        <div class="container d-flex justify-content-center">
+            <textarea class="description" name="description"></textarea>
+        </div>
+
     </section>
 
     <hr class="col-8">
@@ -54,3 +61,14 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector:'textarea.description',
+            width: 900,
+            height: 300
+        });
+    </script>
+@endpush
