@@ -105,14 +105,17 @@ class FriendshipController extends Controller
     {
         $currentuser = Auth::user();
 
-        $userlist = User::with('receivedFriendships', 'sentFriendships')
-            ->whereDoesntHave('receivedFriendships', function ($query) use ($currentuser) {
-                $query->select('target_id')
-                    ->whereColumn('users.id', 'friendships.target_id');
-            })->whereDoesntHave('sentFriendships', function ($query) use ($currentuser) {
-                $query->select('sender_id')
-                    ->whereColumn('users.id', 'friendships.sender_id');
-            })->where('users.id', '!=', $currentuser->id)
+        $userlist = User::with(['receivedFriendships' => function ($query) {
+                $query->whereNull('canceled_At');
+        }], 'sentFriendships')->whereDoesntHave('receivedFriendships', function ($query) use ($currentuser) {
+            $query->select('target_id')
+                ->whereColumn('users.id', 'friendships.target_id');
+            $query->whereNull('canceled_At');
+        })->whereDoesntHave('sentFriendships', function ($query) use ($currentuser) {
+            $query->select('sender_id')
+                ->whereColumn('users.id', 'friendships.sender_id');
+            $query->whereNull('canceled_At');
+        })->where('users.id', '!=', $currentuser->id)
             ->get();
 
         return view('front.friendship', [
