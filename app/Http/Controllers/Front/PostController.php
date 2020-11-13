@@ -20,8 +20,13 @@ class PostController extends Controller
 
     public function add(Request $request)
     {
-        $post = new Post(['description' => $request->description]);
-        Auth::user()->posts()->save($post);
-        return redirect()->back()->with('successNotif', "Nouveau post ajouté !");
+        if (!empty($request->description)) {
+            $post = new Post(['description' => $request->description]);
+            Auth::user()->posts()->save($post);
+            return redirect()->back()->with('successNotif', "Nouveau post ajouté !");
+        } else {
+            return redirect()->back()->with('warningNotif', "Veuillez remplir votre post !");
+        }
+
     }
 }

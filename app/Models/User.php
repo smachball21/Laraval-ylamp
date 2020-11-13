@@ -81,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasLocalePreferen
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->orderBy('created_at','desc');
     }
 
 	/*
