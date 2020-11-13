@@ -5,22 +5,35 @@
 </tr>
 </thead>
 <tbody>
-@foreach ($friends as $friendship)
+@if ($friends->count() > 0)
+    @foreach ($friends as $friendship)
+        <tr>
+            <td>
+                @if($friendship->target_id === $currentuser->id)
+                    {{$friendship->sender->getAdministrativeFullName()}}
+                @endif
+                @if($friendship->sender_id === $currentuser->id)
+                    {{$friendship->target->getAdministrativeFullName()}}
+                @endif
+            </td>
+
+            <td class="text-right text-nowrap">
+                <a class="btn-danger btn-sm" data-toggle="tooltip"
+                   href="{{ route('friendship.delete', ['user' => $friendship]) }}"
+                   title="{{ __("Supprimer cet ami") }}">
+                    <small>{{ __("Supprimer cet ami") }}</small>
+                </a>
+            </td>
+        </tr>
+    @endforeach
+@else
     <tr>
         <td>
-            @if($friendship->target_id === $currentuser->id)
-                {{$friendship->sender->getAdministrativeFullName()}}
-            @endif
-            @if($friendship->sender_id === $currentuser->id)
-                    {{$friendship->target->getAdministrativeFullName()}}
-            @endif
+            Vous n'avez actuellement pas d'ami
         </td>
+        <td>
 
-        <td class="text-right text-nowrap">
-            <a class="btn-danger btn-sm" data-toggle="tooltip" href="{{ route('friendship.delete', ['user' => $friendship]) }}" title="{{ __("Supprimer cet ami") }}">
-                <small>{{ __("Supprimer cet ami") }}</small>
-            </a>
         </td>
     </tr>
-@endforeach
+@endif
 </tbody>

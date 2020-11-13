@@ -7,26 +7,38 @@
 @endpush
 
 @section('content')
-    <main class="text-center my-5">
-        <h1 class="display-3">Trouvez, invitez, supprimez vos amis en 1 clic</h1>
-    </main>
-    <div class="row align-items-center">
-        <div class="card" style="width: 18rem;">
-            <ul class="list-group list-group-flush text-decoration-none">
-                <a href="{{ route('friendship.search') }}"><li class="list-group-item">Trouvez des amis</li></a>
-                <a href="{{ route('friendship.friends') }}"><li class="list-group-item">Mes amis</li></a>
-                <a href="{{ route('friendship.request') }}"><li class="list-group-item">Mes demande</li></a>
-            </ul>
-        </div>
-
-        <div class="container d-flex justify-content-center">
-            <div class="content w-50">
-                <div class="card">
-                    <table class="table table-striped">
-                       @include('front.friendship._partials.'.$partial, ['friends' => $friends])
-                    </table>
+    <main class="text-center my-5 full-height">
+        <h1 class="display-3 mb-5">Trouvez, invitez, supprimez vos amis en 1 clic</h1>
+        <div class="container m-0 w-100 h-100">
+            <div class="d-flex row align-items-start">
+                <div class="d-flex justify-content-start col-md-8 align-self-center text-center ">
+                    <ul class="list-group list-group-flush text-decoration-none">
+                        <a href="{{ route('friendship.search') }}">
+                            <li class="list-group-item">Trouvez des amis</li>
+                        </a>
+                        <a href="{{ route('friendship.friends') }}">
+                            <li class="list-group-item">Mes amis</li>
+                        </a>
+                        <a href="{{ route('friendship.request') }}">
+                            <li class="list-group-item">Mes demande</li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="col-sm align-self-center">
+                    <div class="row align-items-center ">
+                        <div class="content w-100">
+                            <div class="card">
+                                <table class="table table-striped m-0">
+                                    @include('front.friendship._partials.'.$partial, ['friends' => $friends])
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
+
+
 @endsection

@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'cms';
 @import '../common';
+
+html,body {
+    height: 100vh;
+}
 body {
     background-color: #F5F5F5;
     font-family: Quicksand, sans-serif;
