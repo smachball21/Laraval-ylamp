@@ -78,6 +78,7 @@
                                         'Non binaire' => 3,
                                     ],
                                         'placeholder' => 'Selectionner',
+                                        'required'
                                     ])
                                 </div>
 
