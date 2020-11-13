@@ -61,11 +61,14 @@
                     @foreach($posts as $post)
                         <a href="{{ route('comments.get', ['post' => $post->id])}} " class="no-underline w-100">
                             <div class="card my-3">
-                                <div class="card-title text-center mt-2 mb-0 text-muted small">
+                                <div class="card-title card-header text-center  text-muted">
                                     {{ucfirst($post->created_at->isoFormat('dddd Do MMMM YYYY')) . ' à ' . $post->created_at->format('H:i')}}
                                 </div>
                                 <div class="card-body text-break mt-0">
                                     {!!$post->description!!}
+                                </div>
+                                <div class="card-footer text-right text-muted">
+                                    <u>Auteur :</u> {{$post->user->getFullName()}}
                                 </div>
                             </div>
                         </a>

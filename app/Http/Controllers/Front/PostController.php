@@ -12,8 +12,8 @@ class PostController extends Controller
 {
     public function get()
     {
-        $posts = Auth::user()->posts;
-
+        $user = Auth::user();
+        $posts = Post::with('user')->where('user_id', $user->id)->get();
         return view('front.posts', compact('posts'));
 
     }
