@@ -13,8 +13,9 @@ class PostController extends Controller
     public function get()
     {
         $user = Auth::user();
-        $posts = Post::with('user')->where('user_id', $user->id)->get();
+        $posts = Post::with('user', 'friendonlysent', 'friendonlyreceived')->orderByDesc('created_at')->paginate(25);
         return view('front.posts', compact('posts'));
+
 
     }
 

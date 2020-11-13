@@ -3,7 +3,36 @@
 @push('styles')
     <link href="{{ mix('css/front/posts.css') }}" rel="stylesheet">
 @endpush
-
+@push('scripts')
+    <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea.description',
+            width: 900,
+            height: 300,
+            statusbar: false,
+            plugins: "emoticons hr image link lists charmap table code",
+            toolbar: "formatgroup paragraphgroup insertgroup code | undo redo | cut copy paste",
+            toolbar_groups: {
+                formatgroup: {
+                    icon: 'format',
+                    tooltip: 'Formatting',
+                    items: 'bold italic underline strikethrough | forecolor backcolor | superscript subscript | removeformat'
+                },
+                paragraphgroup: {
+                    icon: 'paragraph',
+                    tooltip: 'Paragraph format',
+                    items: 'h1 h2 h3 | bullist numlist | alignleft aligncenter alignright | indent outdent'
+                },
+                insertgroup: {
+                    icon: 'plus',
+                    tooltip: 'Insert',
+                    items: 'link image emoticons charmap hr'
+                }
+            },
+        });
+    </script>
+@endpush
 @section('content')
 
     {{--    <section id="addPost" class="addPost my-5">--}}
@@ -61,13 +90,13 @@
                     @foreach($posts as $post)
                         <a href="{{ route('comments.get', ['post' => $post->id])}} " class="no-underline w-100">
                             <div class="card my-3">
-                                <div class="card-title card-header text-center  text-muted">
+                                <div class="card-title card-header text-center text-light bblue">
                                     {{ucfirst($post->created_at->isoFormat('dddd Do MMMM YYYY')) . ' à ' . $post->created_at->format('H:i')}}
                                 </div>
                                 <div class="card-body text-break mt-0">
                                     {!!$post->description!!}
                                 </div>
-                                <div class="card-footer text-right text-muted">
+                                <div class="card-footer text-right text-light bblue">
                                     <u>Auteur :</u> {{$post->user->getFullName()}}
                                 </div>
                             </div>
@@ -78,34 +107,3 @@
         </div>
     </section>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea.description',
-            width: 900,
-            height: 300,
-            statusbar: false,
-            plugins: "emoticons hr image link lists charmap table code",
-            toolbar: "formatgroup paragraphgroup insertgroup code | undo redo | cut copy paste",
-            toolbar_groups: {
-                formatgroup: {
-                    icon: 'format',
-                    tooltip: 'Formatting',
-                    items: 'bold italic underline strikethrough | forecolor backcolor | superscript subscript | removeformat'
-                },
-                paragraphgroup: {
-                    icon: 'paragraph',
-                    tooltip: 'Paragraph format',
-                    items: 'h1 h2 h3 | bullist numlist | alignleft aligncenter alignright | indent outdent'
-                },
-                insertgroup: {
-                    icon: 'plus',
-                    tooltip: 'Insert',
-                    items: 'link image emoticons charmap hr'
-                }
-            },
-        });
-    </script>
-@endpush

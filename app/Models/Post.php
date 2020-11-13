@@ -29,4 +29,14 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function friendonlysent()
+    {
+        return $this->belongsTo(Friendship::class, 'user_id', 'target_id');
+    }
+
+    public function friendonlyreceived()
+    {
+        return $this->belongsTo(Friendship::class, 'user_id', 'target_id');
+    }
+
 }
