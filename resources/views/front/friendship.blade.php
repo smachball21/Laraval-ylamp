@@ -8,7 +8,7 @@
 
 @section('content')
     <main class="text-center my-5">
-        <h1 class="display-3">Trouvez, invitez, supprimez vos amis en 1 clic</h1>
+        <h1 class="display-3">Trouvez, invitez, supprimez vos amis en 1 clic</h1>bot
     </main>
     <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush text-decoration-none">

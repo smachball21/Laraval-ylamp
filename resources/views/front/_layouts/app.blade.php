@@ -104,7 +104,7 @@
 <script src="{{ mix('js/front/app.js') }}"></script>
 @stack('scripts')
 <!-- Footer -->
-<footer class="page-footer text-light font-small footer-color">
+<footer class="page-footer text-light font-small footer-color fixed-bottom mt-5">
 
     <!-- Copyright -->
     <div class="footer-copyright text-right py-3 mr-3">© 2020 Copyright:

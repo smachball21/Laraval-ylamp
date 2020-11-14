@@ -81,8 +81,49 @@ class User extends Authenticatable implements MustVerifyEmail, HasLocalePreferen
 
     public function posts()
     {
-        return $this->hasMany(Post::class)->orderBy('created_at','desc');
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
+
+    // friendship que j'ai commencé
+    function friendsOfMine()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'sender_id', 'target_id')
+            ->wherePivot('accepted_at', '!=', null) // to filter only accepted
+            ->withPivot('accepted_at'); // or to fetch accepted value
+    }
+
+    // friendship que j'ai reçu
+    function friendOf()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'target_id', 'sender_id')
+            ->wherePivot('accepted_at', '!=', null) // to filter only accepted
+            ->withPivot('accepted_at');
+    }
+
+    // accessor pour pouvoir appeler $user->friends()
+    public function getFriendsAttribute()
+    {
+        if ( ! array_key_exists('friends', $this->relations)) $this->loadFriends();
+
+        return $this->getRelation('friends');
+    }
+
+
+    protected function loadFriends()
+    {
+        if ( ! array_key_exists('friends', $this->relations))
+        {
+            $friends = $this->mergeFriends();
+
+            $this->setRelation('friends', $friends);
+        }
+    }
+
+    protected function mergeFriends()
+    {
+        return $this->friendsOfMine->merge($this->friendOf);
+    }
+
 
 	/*
 	|--------------------------------------------------------------------------

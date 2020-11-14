@@ -8,12 +8,7 @@
 @foreach ($friends as $friendship)
     <tr>
         <td>
-            @if($friendship->target_id === $currentuser->id)
-                {{$friendship->sender->getAdministrativeFullName()}}
-            @endif
-            @if($friendship->sender_id === $currentuser->id)
-                    {{$friendship->target->getAdministrativeFullName()}}
-            @endif
+           {{$friendship->getAdministrativeFullName()}}
         </td>
 
         <td class="text-right text-nowrap">
