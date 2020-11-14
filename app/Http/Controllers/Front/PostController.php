@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,8 @@ class PostController extends Controller
     public function get()
     {
         $user = Auth::user();
-        $posts = Post::with('user', 'friendonlysent', 'friendonlyreceived')->orderByDesc('created_at')->paginate(25);
-        return view('front.posts', compact('posts'));
+        $posts = Post::with( 'user','comments', 'comments.user')->orderByDesc('created_at')->paginate(25);
+        return view('front.posts' ,compact('posts'));
 
 
     }

@@ -31,8 +31,9 @@ class Comment extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'author_id');
+        return $this->belongsTo(User::class, 'author_id', 'id');
     }
+
     /* Scope query to order comments by latests
     public function latest(){
         return $this->orderBy('created_at', 'desc');
